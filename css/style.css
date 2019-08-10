@@ -1,3 +1,8 @@
 .add-info-list {
   padding-left: 1rem;
 }
+@media screen and (min-width: 980px) {
+  .add-info-list {
+    padding-left: 0;
+  }
+}
