@@ -10,7 +10,7 @@ class UI {
         <div class="row">
           <div class="col-md-3">
             <div class="text-center">
-              <img class="image-fluid mb-2" src="${user.avatar_url}" alt="${user.name}"/>
+              <img class="img-fluid mb-2" src="${user.avatar_url}" alt="${user.name}"/>
               <a class="btn btn-primary btn-block" target="_blank" href="${user.html_url}">View profile</a>
             </div>
           </div>
@@ -21,10 +21,10 @@ class UI {
             <span class="badge badge-primary">Following ${user.following}</span>
             <br><br>
             <ul class="list-group add-info-list">
-              <li class="list-goup-item">Company: ${user.company}</li>
-              <li class="list-goup-item">Website/Blog: ${user.blog}</li>
-              <li class="list-goup-item">Location: ${user.location}</li>
-              <li class="list-goup-item">Since: ${user.created_at}</li>
+              <li class="list-group-item">Company: ${user.company}</li>
+              <li class="list-group-item">Website/Blog: <a href="${user.blog}">${user.blog}</a></li>
+              <li class="list-group-item">Location: ${user.location}</li>
+              <li class="list-group-item">Since: ${user.created_at}</li>
             </ul>
           </div>
         </div>
@@ -32,5 +32,29 @@ class UI {
       <h3 class="page-heading mb-3">Latest Repos</h3>
       <div id="repos"></div>
     `;
+  }
+  showAlert(message, className) {
+    // Clear any alerts if present
+    this.clearAlert();
+    // Create an alert which displays when user not found
+    const div = document.createElement('div');
+    div.className = className;
+    div.innerText = message;
+    const searchContainer = document.querySelector('.search-container');
+    const search = document.querySelector('.search');
+    searchContainer.insertBefore(div, search);
+    setTimeout( ()=> {
+      this.clearAlert();
+    }, 3000);
+  }
+  clearAlert() {
+    const currentAlert = document.querySelector('.alert');
+    if (currentAlert) {
+      currentAlert.remove();
+    }
+  }
+
+  clearProfile() {
+    this.profile.innerHTML = '';
   }
 }
