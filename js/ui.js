@@ -33,7 +33,29 @@ class UI {
       <div id="repos"></div>
     `;
   }
+  showRepos(repos) {
+    let output = '';
+    repos.forEach( (repo) => {
+      output += `
+        <div class="card card-body mb-2">
+          <div class="row">
+            <div class="col-md-6">
+              <a href="${repo.html_url}">${repo.name}</a>
+            </div>
+            <div class="col-md-6">
+              <span class="badge badge-primary">Stars: ${repo.stargazers_count}</span>
+              <span class="badge badge-secondary">Watchers: ${repo.watchers_count}</span>
+              <span class="badge badge-primary">Forks ${repo.forks_count}</span>            
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    document.getElementById('repos').innerHTML = output;
+  }
   showAlert(message, className) {
+    
     // Clear any alerts if present
     this.clearAlert();
     // Create an alert which displays when user not found
